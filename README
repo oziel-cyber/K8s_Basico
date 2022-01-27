@@ -1,0 +1,70 @@
+Exemplo básico de configuração para conceitos de POD, Deployment e Service.
+
+Exemplos:
+
+POD
+
+Pod é a menor unidade utilizada para rodar uma aplicação em kubernetes, para criar um pod utilize o comando apply para ele pegar as informações do seu arquivo YAML
+
+kubectl apply -f simple-pod.yml
+
+Deployment
+
+Deployment é utilizado para implementar suas aplicações pelo arquivo yaml de forma completa. Nele você define quantidade de pod e replicas. Especificações do tipo de máquina, porta por exemplo
+
+
+kubectl apply -f simple-deployment.yml
+
+Os deployments v2 e v3 são atualizações da sua implementação
+
+
+Service
+
+Os services são utilizados para criar um caminho de conectividade centralizada para sua aplicação. Ele será responsável por distribuir os IP's para os pods dando a você conectividade. Você não conseguirá acessar um POD externamente, portanto para se realizar essa operação. Em vez de um service será necessário utilizar um node ou um comando EXPOSE.
+
+kubectl apply -f simple-service.yml
+
+
+
+
+Criação do arquivo index.json
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+const express = require('express')
+var pjson = require('../package.json')
+
+const app = express()
+
+const startup = new Date()
+const version = pjson.version
+
+app.get('/',(req, res) => {
+	res.send({
+		startup: startup,
+		version: version
+	})
+})
+
+console.log('Iniciando a API version ${version}')
+
+setTimeout(() => {
+	app.listen(3000, () => {
+		console.log('API Iniciada na porta 3000')
+
+	})
+}, 15000)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+Criação dos arquivos json
+
+É necessário ter o node instalado em sua máquina.
+
+Ao instalar colocar os seguintes comandos:
+
+npm init
+
+npm install
+
+Verificar se foi criado os arquivos "Package.json" e "Package-lock.json"

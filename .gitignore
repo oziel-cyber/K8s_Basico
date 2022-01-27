@@ -1,0 +1,9 @@
+#Arquivo src
+#*src/
+
+*node_modules/
+
+
+#Arquivos Json
+
+*.json

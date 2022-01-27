@@ -1,0 +1,10 @@
+
+
+#Ignorar arquivos que não sejam Dockerfile e alguns arquivos permitidos
+
+!.Dockerfile
+!/src/**
+
+#Ignorar
+
+**/.log

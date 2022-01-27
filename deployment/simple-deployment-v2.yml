@@ -1,0 +1,28 @@
+apiVersion: v2
+kind: Deployment
+metadata:
+  name: simple-api
+  labels:
+    app: simple-api
+
+spec:
+  replicas: 10
+  selector:
+    matchlabels:
+      app: simple-api
+  template:
+    metadata:
+      labels:
+        app: simple-api
+    spec:
+      containers:
+      - name: simple-api
+        image: gustavoleitao/simple-api:1.0.3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 15
